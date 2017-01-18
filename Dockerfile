@@ -16,6 +16,6 @@ RUN mkdir -p /data/ \
 
 COPY config.js /data/shadowsocks-manager/config.js
 COPY docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 3884
