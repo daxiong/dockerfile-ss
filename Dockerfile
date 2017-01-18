@@ -12,14 +12,10 @@ RUN mkdir -p /data/ \
                 && cd shadowsocks-manager \
                 && npm install \
                 && sed -i '11a \ "resolutions": { "angular": "1.6.1" },' bower.json \
-                && bower install --allow-root \
-                && mv config.js.sample config.js \
-                && sed -i '3c host:"mongo",' config.js \
-                && sed -i '11c email:"cnstou@gmail.com",' config.js \
-                && sed -i '12c password:"xxxx"' config.js \
-                && sed -i '18c webaddress:"http://0.0.0.0:3884"' config.js \
-                && sed -i '21c http:3884,' config.js
+                && bower install --allow-root
 
+COPY config.js /data/shadowsocks-manager/config.js
+COPY docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
-ENTRYPOINT ["node", "server"]
 EXPOSE 3884
